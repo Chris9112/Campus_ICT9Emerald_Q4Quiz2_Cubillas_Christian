@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Academic Rating Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #d0e7ff, #fef9ff);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      background-color: white;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+    .title {
+      color: #0d6efd;
+      font-weight: 600;
+    }
+    .rating {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    body {
+  background: url('OBMC.png') center;
+  background-size: contain;
+  font-family: 'Segoe UI', sans-serif width:"300" height: "200";
+}
+
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <div class="card mx-auto" style="max-width: 600px;">
+      <h2 class="text-center title mb-3">Academic Rating Calculator</h2>
+      <p class="text-muted text-center">Enter your grades for <strong>Science</strong>, <strong>Filipino</strong>, and <strong>Social Studies</strong>.</p>
+
+      
+      <details ontoggle="console.log('Instructions toggled.')">
+        <summary><strong>Instructions</strong></summary>
+        <p class="mt-2">Input your grades. Click "Get Rating" to calculate the average and view your performance rating...and good luck!</p>
+      </details>
+
+      
+      <form class="mt-4">
+        <div class="mb-3">
+          <label for="science" class="form-label">Science</label>
+          <input type="number" class="form-control" id="science" min="0" max="100" required>
+        </div>
+        <div class="mb-3">
+          <label for="filipino" class="form-label">Filipino</label>
+          <input type="number" class="form-control" id="filipino" min="0" max="100" required>
+        </div>
+        <div class="mb-3">
+          <label for="social" class="form-label">Social Studies</label>
+          <input type="number" class="form-control" id="social" min="0" max="100" required>
+        </div>
+        <button type="button" class="btn btn-primary w-100" onclick="computeAverage()">Get Rating</button>
+      </form>
+
+     
+      <div class="mt-4 text-center">
+        <p id="result" class="rating text-success"></p>
+      </div>
+    </div>
+    
+    <p class="text-center mt-4">
+    </p>
+  </div>
+
+  <script>
+    
+    function computeAverage() {
+      
+      let sci = parseFloat(document.getElementById("science").value);
+      let fil = parseFloat(document.getElementById("filipino").value);
+      let soc = parseFloat(document.getElementById("social").value);
+
+      
+      let avg = (sci + fil + soc) / 3;
+
+      
+      let rating;
+      switch (true) {
+        case (avg >= 94 && avg <= 100):
+          rating = "Excellent";
+          break;
+        case (avg >= 87 && avg < 94):
+          rating = "Above Satisfactory";
+          break;
+        case (avg >= 80 && avg < 87):
+          rating = "Satisfactory";
+          break;
+        case (avg >= 75 && avg < 80):
+          rating = "Needs Improvement";
+          break;
+        case (avg >= 70 && avg < 75):
+          rating = "Poor";
+          break;
+        default:
+          rating = "Its over for you...";
+      }
+
+      
+      document.getElementById("result").innerHTML = `Average: ${avg.toFixed(2)}<br>Performance Rating: ${rating}`;
+    }
+  </script>
+</body>
+</html>
